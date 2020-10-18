@@ -145,7 +145,7 @@ class Admin extends CI_Controller
 	{
 		if ($this->input->post('userlogin')) {
 
-			$apiKey = 'CODEX@123';
+			$apiKey = 'Dckap@123';
 			$apiUser = "admin";
 			$apiPass = "1234";
 			$url = base_url().'index.php/api/authentication/login';
@@ -166,6 +166,7 @@ class Admin extends CI_Controller
 			curl_close($ch);
             $result = json_decode($result,true);
 			if (isset($result['status']) && $result['status'] === true) {
+				$this->session->set_userdata('isloggedin', true);
 				$data['data'] = $result['data'][0];
 				$this->load->view('header');
               $this->load->view('viewUser1', $data);
